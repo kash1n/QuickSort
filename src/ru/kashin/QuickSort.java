@@ -13,8 +13,14 @@ public class QuickSort {
         if (left >= right)
             return;
         int partitionIndex = partition(a, left, right, cmp);
-        sortInternal(a, left, partitionIndex-1, cmp);
-        sortInternal(a, partitionIndex+1, right, cmp);
+        if (partitionIndex < a.length / 2) {
+            sortInternal(a, left, partitionIndex-1, cmp);
+            sortInternal(a, partitionIndex+1, right, cmp);
+        }
+        else {
+            sortInternal(a, partitionIndex+1, right, cmp);
+            sortInternal(a, left, partitionIndex-1, cmp);
+        }
     }
 
     private static <T> int partition (T[] a, int left, int right,
