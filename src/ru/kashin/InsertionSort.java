@@ -3,6 +3,7 @@ package ru.kashin;
 public class InsertionSort {
 
     public static <T> void Sort(T[] a, CountingComparator<T> cmp) {
+        cmp.reset();
         Sort(a, 0, a.length - 1, cmp);
     }
 

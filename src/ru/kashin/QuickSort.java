@@ -5,9 +5,10 @@ import java.util.Random;
 public class QuickSort {
 
     // random numbers generator
-    private static Random rng = new Random();
+    private static final Random rng = new Random();
 
     public static <T> void Sort(T[] a, CountingComparator<T> cmp) {
+        cmp.reset();
         sortInternal(a, 0, a.length - 1, cmp);
     }
 

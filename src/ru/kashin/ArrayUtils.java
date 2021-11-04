@@ -4,13 +4,16 @@ public class ArrayUtils {
     private static final int MAX_SIZE_FOR_PRINT = 10;
 
     public static <T> void print (T[] arr) {
-        int size = arr.length;
-        for (int i = 0; i < size; i++) {
-            if (i > MAX_SIZE_FOR_PRINT) {
-                System.out.println(" ...");
-                break;
+        if (arr.length <= MAX_SIZE_FOR_PRINT) {
+            for (T t : arr) {
+                System.out.print(" " + t.toString());
             }
-            System.out.print(" " + arr[i].toString());
+        } else {
+            for (int i = 0; i < 4; i++)
+                System.out.print(" " + arr[i].toString());
+            System.out.println(" ...");
+            for (int i = arr.length - 4; i < arr.length; i++)
+                System.out.print(" " + arr[i].toString());
         }
         System.out.println ();
     }

@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        final int arraySize = 1000000;
+        final int arraySize = 10000;
         Person[] a, b, randomValues = new Person[arraySize];
         ArrayUtils.fillWithRandomValues(randomValues);
         PersonAgeComparator comparator = new PersonAgeComparator();
@@ -22,7 +22,6 @@ public class Main {
         System.out.println("Elapsed: " + elapsed / 1000.);
         System.out.println("Comparisons: " + comparator.count());
         System.out.println();
-        comparator.reset();
 
         // sort with QuickSort
         b = randomValues.clone();
@@ -34,7 +33,6 @@ public class Main {
         System.out.println("Elapsed: " + elapsed / 1000.);
         System.out.println("Comparisons: " + comparator.count());
         System.out.println();
-        comparator.reset();
 
         boolean ok = ArrayUtils.equals (a, b, comparator);
         System.out.println(ok ? "OK" : "FAIL");

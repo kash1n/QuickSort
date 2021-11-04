@@ -34,7 +34,7 @@ public class Person implements Comparable<Person> {
 
     @Override
     public String toString() {
-        return String.format("%s, %s %s (%s)\n", lastName, firstName, secondName, birthDate.format(dateFormatter));
+        return String.format("%s %s (%s)\n", firstName, lastName, birthDate.format(dateFormatter));
     }
 
     @Override
@@ -50,21 +50,24 @@ public class Person implements Comparable<Person> {
 
     public static Person randomPerson () {
         Random rnd = new Random();
-        int year = rnd.nextInt(2021) + 1;
+        int year = rnd.nextInt(122) + 1900;
         int month = rnd.nextInt(12) + 1;
         int day = rnd.nextInt(28) + 1;
-        return new Person(randomString (), randomString (), randomString (), LocalDate.of(year, month, day));
+        return new Person(randomName (rnd), randomName (rnd), randomSurname (rnd), LocalDate.of(year, month, day));
     }
 
-    private static String randomString () {
-        int leftLimit = 97; // letter 'a'
-        int rightLimit = 122; // letter 'z'
-        Random random = new Random();
-        int targetStringLength = random.nextInt(10) + 3;
+    private static String randomName (Random rnd) {
+        String[] names = {"Oliver", "Jack", "Harry", "Jacob", "Charlie",
+                          "Thomas", "Oscar", "William", "James", "George",
+                          "Amelia", "Olivia", "Jessica", "Emily", "Lily",
+                          "Ava", "Heather", "Sophie", "Mia", "Isabella"};
+        return names[rnd.nextInt(names.length)];
+    }
 
-        return random.ints(leftLimit, rightLimit + 1)
-                    .limit(targetStringLength)
-                    .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                    .toString();
+    private static String randomSurname (Random rnd) {
+        String[] names = {"Smith", "Johnson", "Williams", "Jones", "Brown",
+                          "Davis", "Miller", "Wilson", "Moore", "Taylor",
+                          "Anderson", "Thomas", "Jackson", "White", "Harris"};
+        return names[rnd.nextInt(names.length)];
     }
 }
